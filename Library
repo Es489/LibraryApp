@@ -1,0 +1,213 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Scanner;
+
+import org.apache.commons.collections4.OrderedMap;
+import org.apache.commons.collections4.map.ListOrderedMap;
+
+public class Library {
+	private String book_records;
+	private String member_records;
+	private String loan_records;
+	private int book_id;
+	private Map<String,Book> books;
+	private ArrayList<Member> members;
+	private ArrayList<Loan> loans;
+	
+	public Library() {
+		
+		members = new ArrayList<Member>();
+		loans = new ArrayList<Loan>();
+	}
+	
+	/*public void getFileRecords() {
+		
+		System.out.println("Please enter filename for members' records: ");
+		member_records = in.nextLine();
+		System.out.println("Please enter filename for loans' records: ");
+		loan_records = in.nextLine();
+		in.close();
+	
+	}*/
+	
+	public void getBooksRecords() {
+		try {
+		Scanner in = new Scanner(System.in);
+		System.out.println("Please enter filename for books records: ");
+		book_records = in.nextLine();
+		in.close();
+		}
+		catch(Exception e) {
+			System.out.println("File name entered incorrectly");
+			getBooksRecords();
+		}
+		
+		File b = new File(book_records);
+		
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(b));
+		}
+		catch(FileNotFoundException e){
+			if(b.isDirectory()) {
+				System.out.println(book_records + " is Directory");
+				getBooksRecords();
+			}
+			else {
+				System.out.println("No such file has been found: " + book_records);
+				getBooksRecords();
+			}
+		}
+		
+	}
+		
+	public void addBook(Book b) {
+		if(b.getId()!=0) {
+			books.put(b.getTitle(), b);
+		}
+		else {
+			
+			books.put(b.getTitle(), b);
+		}
+			
+	}
+	public void addBook() {
+		Scanner input = new Scanner(System.in);
+		Book new_book = new Book();
+		System.out.println("Please enter book's title: ");
+		String title = input.nextLine();
+		new_book.setTitle(title);
+		System.out.println("Please enter book's author: ");
+		String author = input.nextLine();
+		new_book.setAuthor(author);
+		System.out.println("Please enter book's year: ");
+		int year = input.nextInt();
+		new_book.setYear(year);
+		System.out.println("Please enter number of copies: ");
+		int copies = input.nextInt();
+		new_book.setYear(year);
+		input.close();
+		new_book.setId(books.get(books.size()-1).getId() + 1);
+		books.put(new_book.getTitle(),new_book);
+		System.out.printf("Entered information: '%s' '%s' %d %d\n",title,author,year,copies);
+		
+	}
+	
+	public void edithAuthor(Book b) {
+		Scanner in = new Scanner(System.in);
+		System.out.println("Please enter new author/s name/s: ");
+		
+		String name = in.nextLine();
+		b.setAuthor(name);
+		System.out.println("The books author now is: " + b.getAuthor());
+		System.out.println("Would you like to submit changes? [y/n]");
+		String answer = in.nextLine();
+		
+		while (answer.equals("n")) {
+			System.out.println("Please enter new author/s name/s: ");
+			name = in.nextLine();
+			System.out.printf("New name is: %s \n", name); 
+			b.setAuthor(name);
+			System.out.println("The books author now is" + b.getAuthor());
+			System.out.println("Would you like to submit changes? [y/n]");
+			answer = in.nextLine();
+	   }
+		System.out.printf("New book details are: %d %s %s %d %d", b.getId(), b.getTitle(), b.getAuthor(), b.getYear(), b.getCopies()); 
+		in.close();
+	}
+	
+	public void edithTitle(Book b) {
+		Scanner in = new Scanner(System.in);
+		System.out.println("Please enter new book title: ");
+		String title = in.nextLine();
+		b.setTitle(title);
+		System.out.printf("New title is: %s\n",title );
+		System.out.println("Would you like to submit changes? [y/n]");
+		String answer = in.nextLine();
+		while (answer.equals("n")) {
+			System.out.println("Please enter new book title: ");
+			title = in.nextLine();
+			b.setTitle(title);
+			System.out.printf("New title is: %s\n",title );
+			System.out.println("Would you like to submit changes? [y/n]");
+			answer = in.nextLine();
+		}
+		System.out.printf("New book details are: %d %s %s %d %d", b.getId(), b.getTitle(), b.getAuthor(), b.getYear(), b.getCopies()); 
+		in.close();
+		
+	}
+	
+	public void edithYear(Book b) {
+		Scanner in = new Scanner(System.in);
+		System.out.println("Please enter new book's year: ");
+		int year = in.nextInt();
+		b.setYear(year);
+		System.out.printf("New year is: %d\n",year );
+		System.out.println("Would you like to submit changes? [y/n]");
+		String answer = in.nextLine();
+		while (answer.equals("n")) {
+			System.out.println("Please enter new book's year: ");
+			year = in.nextInt();
+			b.setYear(year);
+			System.out.printf("New title is: %d\n",year );
+			System.out.println("Would you like to submit changes? [y/n]");
+			answer = in.nextLine();
+		}
+		System.out.printf("New book details are: %d %s %s %d %d", b.getId(), b.getTitle(), b.getAuthor(), b.getYear(), b.getCopies()); 
+		in.close();
+		
+	}
+	
+	public void edithCopies(Book b) {
+		Scanner in = new Scanner(System.in);
+		System.out.println("Please enter number of copies: ");
+		int copies = in.nextInt();
+		b.setCopies(copies);
+		System.out.printf("New year is: %d\n",copies );
+		System.out.println("Would you like to submit changes? [y/n]");
+		String answer = in.nextLine();
+		while (answer.equals("n")) {
+			System.out.println("Please enter new book year: ");
+			copies = in.nextInt();
+			b.setCopies(copies);
+			System.out.printf("New title is: %d\n",copies );
+			System.out.println("Would you like to submit changes? [y/n]");
+			answer = in.nextLine();
+		}
+		System.out.printf("New book details are: %d %s %s %d %d", b.getId(), b.getTitle(), b.getAuthor(), b.getYear(), b.getCopies()); 
+		in.close();
+		
+	}
+	
+	public void edithBook(Book e, String ans) {
+		
+			System.out.println("Options are:\n a - to change the author \n t - to change book's title\n"
+					+ " y - to change the year\n c - to change number of copies");
+			
+			
+			switch(ans) {
+				case "a": edithAuthor(e); break;
+				case "t": edithTitle(e);break;
+				case "y": edithYear(e); break;
+				case "c": edithCopies(e); break;
+			}
+		
+		
+	}
+	
+	public void removeBook() {}
+	
+	
+	public static void main(String[] args) {
+		
+		Library l = new Library();
+	
+		//l.edithBook(m, "t");
+		//System.out.printf("New book details are: %d %s %s %d %d", m.getId(), m.getTitle(), m.getAuthor(), m.getYear(), m.getCopies()); 
+	    
+	}
+
+}
