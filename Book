@@ -1,0 +1,73 @@
+
+public class Book {
+	private int id;
+	private String title;
+	private String authors;
+	private int year;
+	private int copies;
+	
+	public Book() {
+		this.id = 0;
+		this.title = "";
+		this.authors = null;
+		this.year = 0;
+		this.copies = 0;
+	}
+	
+	public Book(int id, String auth, String title, int year, int copy) {
+		this.id = id;
+		this.authors = auth;
+		this.title = title;
+		this.year = year;
+		this.copies = copy;
+	}
+	
+	public Book(String auth, String title, int year, int copy) {
+		this.id = 0;
+		this.authors = auth;
+		this.title = title;
+		this.year = year;
+		this.copies = copy;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getAuthor() {
+		return authors;
+	}
+
+	public void setAuthor(String author) {
+		this.authors = author;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
+	public int getCopies() {
+		return copies;
+	}
+
+	public void setCopies(int copies) {
+		this.copies = copies;
+	}
+
+}
