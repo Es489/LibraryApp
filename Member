@@ -1,0 +1,48 @@
+import java.util.Date;
+
+public class Member {
+     private int id;
+     private String fName;
+     private String lName;
+     private Date joined;
+	
+     public Member() {}
+     
+     public Member(int id, String fn, String sn, Date j) {
+    	 	this.id = id;
+    	 	this.fName = fn;
+    	 	this.lName = sn;
+    	 	this.joined = j;
+     }
+     
+     
+     
+     public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getfName() {
+		return fName;
+	}
+	public void setfName(String fName) {
+		this.fName = fName;
+	}
+	public String getlName() {
+		return lName;
+	}
+	public void setlName(String lName) {
+		this.lName = lName;
+	}
+	public Date getJoined() {
+		return joined;
+	}
+	public void setJoined(Date joined) {
+		this.joined = joined;
+	}
+     
+     
+     
+     
+}
