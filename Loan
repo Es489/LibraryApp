@@ -1,0 +1,54 @@
+import java.util.Date;
+
+public class Loan {
+     private int reciept;
+     private int bookId;
+     private int memberId;
+     private Date borrowDate;
+     
+     public Loan() {}
+     
+     public Loan(int id, int book, int member, Date date) {
+    	    this.reciept = id;
+    	    this.bookId = book;
+    	    this.memberId = member;
+    	    this.borrowDate = date;
+    	 
+     }
+
+	public int getReciept() {
+		return reciept;
+	}
+
+	public void setReciept(int reciept) {
+		this.reciept = reciept;
+	}
+
+	public int getBookId() {
+		return bookId;
+	}
+
+	public void setBookId(int bookId) {
+		this.bookId = bookId;
+	}
+
+	public int getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(int memberId) {
+		this.memberId = memberId;
+	}
+
+	public Date getBorrowDate() {
+		return borrowDate;
+	}
+
+	public void setBorrowDate(Date borrowDate) {
+		this.borrowDate = borrowDate;
+	}
+     
+     
+     
+     
+}
